@@ -1,0 +1,92 @@
+package com.example.deeze_project.view
+
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.RecyclerView
+import com.example.deeze_project.R
+import com.example.deeze_project.data.model.Album
+import com.example.deeze_project.databinding.AlbumItemRecyclerBinding
+import com.facebook.shimmer.ShimmerFrameLayout
+import com.squareup.picasso.Callback
+import com.squareup.picasso.Picasso
+
+class AlbumAdapter (
+    private val albums: List<Album>,
+    private val listener: ClickListener
+    ) : RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder>() {
+
+    fun loadImage(imageView: ImageView, url: String, shimmer: ShimmerFrameLayout) {
+        shimmer.startShimmerAnimation()
+        Picasso.get()
+            .load(url)
+            .resize(100, 100)
+            .centerInside()
+            .noFade()
+            .placeholder(R.color.grey)
+            .error(R.drawable.ic_launcher_background)  //TODO: changer image error
+            .into(imageView, object : Callback {
+                override fun onSuccess() {
+                    // animation fade-in
+                    imageView.alpha = 0f
+                    shimmer.stopShimmerAnimation()
+                    imageView.animate().setDuration(1000).alpha(1f).start()
+                }
+
+                override fun onError(e: Exception?) {
+                    shimmer.stopShimmerAnimation()
+                }
+            })
+    }
+
+    override fun getItemCount() = albums.size
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : AlbumViewHolder {
+        val viewBinding = DataBindingUtil.inflate<AlbumItemRecyclerBinding>(
+            LayoutInflater.from(parent.context),
+            R.layout.album_item_recycler,
+            parent,
+            false
+        )
+        return AlbumViewHolder(viewBinding)
+    }
+
+    override fun onBindViewHolder(holder: AlbumViewHolder, position: Int) {
+        with(holder) {
+            // .album se trouve dans <variable> dans xml
+            // met a jour les valeurs dans xml tout seul
+            albumBinding.album = albums[position]
+
+            // loadImage ici car ne sait pas mettre dans BindingUtils
+            // car ne sait pas comment avoir la ref de 2 vue (ImageView + Shimmer) directement dans le XML
+            loadImage(
+                albumBinding.albumCover, //recupere view (albumCover = id dans XML)
+                albumBinding.album!!.cover,
+                albumBinding.parentShimmerLayout // recupere view (parentShimmerLayout = id dans XML)
+            )
+
+            // click listener sur tout l'item
+            /*albumBinding.root.setOnClickListener {
+                Log.d("toto", "pos: " + position)
+            }*/
+            // click listener sur un composant du XML spécifique
+            /*albumBinding.albumTitle.setOnClickListener {
+                Log.d("toto", "title clicked")
+            }*/
+
+            // Si on veut faire callback vers la vue quand item cliqué pour startActivity par exemple
+            albumBinding.root.setOnClickListener {
+                listener.onItemClick(albumBinding.root, albums[position])
+            }
+        }    }
+
+
+    class AlbumViewHolder(
+        // comme itemView (vue d'un item d'un recyclerview) mais dataBinding <layout> in item_album_recyclerview d'où le nom du type ("ItemAlbumRecyclerviewBinding")
+        val albumBinding: AlbumItemRecyclerBinding
+    ) : RecyclerView.ViewHolder(albumBinding.root) {
+        // Ne recup pas les view ici avec findviewbyid car sont contenu deja dans albumBinding
+    }
+    
+}
