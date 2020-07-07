@@ -22,7 +22,7 @@ abstract class albumListViewModel(
             val data = async {
                 return@async repository.getAlbums()
             }.await()
-            albumsMutable.value;
+            albumsMutable.value
         }
     }
 }

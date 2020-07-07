@@ -54,18 +54,13 @@ class AlbumAdapter (
 
     override fun onBindViewHolder(holder: AlbumViewHolder, position: Int) {
         with(holder) {
-            // .album se trouve dans <variable> dans xml
-            // met a jour les valeurs dans xml tout seul
             albumBinding.album = albums[position]
 
-            // loadImage ici car ne sait pas mettre dans BindingUtils
-            // car ne sait pas comment avoir la ref de 2 vue (ImageView + Shimmer) directement dans le XML
             loadImage(
                 albumBinding.albumCover, //recupere view (albumCover = id dans XML)
                 albumBinding.album!!.cover,
                 albumBinding.parentShimmerLayout // recupere view (parentShimmerLayout = id dans XML)
             )
-            
             albumBinding.root.setOnClickListener {
                 listener.onItemClick(albumBinding.root, albums[position])
             }
@@ -73,10 +68,8 @@ class AlbumAdapter (
 
 
     class AlbumViewHolder(
-        // comme itemView (vue d'un item d'un recyclerview) mais dataBinding <layout> in item_album_recyclerview d'où le nom du type ("ItemAlbumRecyclerviewBinding")
         val albumBinding: AlbumItemRecyclerBinding
     ) : RecyclerView.ViewHolder(albumBinding.root) {
-        // Ne recup pas les view ici avec findviewbyid car sont contenu deja dans albumBinding
     }
     
 }
