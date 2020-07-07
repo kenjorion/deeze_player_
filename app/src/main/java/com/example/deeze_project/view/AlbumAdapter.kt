@@ -65,17 +65,7 @@ class AlbumAdapter (
                 albumBinding.album!!.cover,
                 albumBinding.parentShimmerLayout // recupere view (parentShimmerLayout = id dans XML)
             )
-
-            // click listener sur tout l'item
-            /*albumBinding.root.setOnClickListener {
-                Log.d("toto", "pos: " + position)
-            }*/
-            // click listener sur un composant du XML spécifique
-            /*albumBinding.albumTitle.setOnClickListener {
-                Log.d("toto", "title clicked")
-            }*/
-
-            // Si on veut faire callback vers la vue quand item cliqué pour startActivity par exemple
+            
             albumBinding.root.setOnClickListener {
                 listener.onItemClick(albumBinding.root, albums[position])
             }
