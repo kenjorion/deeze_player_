@@ -1,11 +1,9 @@
 package com.example.deeze_project.view
 
-import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -14,7 +12,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.deeze_project.R
 import com.example.deeze_project.data.api.AlbumAPI
-import com.example.deeze_project.data.model.Album
 import com.example.deeze_project.data.repo.AlbumRepo
 import com.example.deeze_project.viewmodel.albumList.albumListViewModel
 import kotlinx.android.synthetic.main.album_list_fragment.*
