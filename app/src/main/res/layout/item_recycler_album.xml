@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Pour faire du databinding, la racine doit etre <layout> -->
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- <data> mettre variable a observer - databinding -->
     <data>
         <variable
             name="album"
-            type="com.example.deeze_project.data.model.Album" /> <!-- mettre package COMPLET -->
+            type="com.example.deeze_project.data.model.Album" />
     </data>
 
     <LinearLayout
-        android:layout_margin="3dp"
+        android:layout_margin="4dp"
         android:layout_width="100dp"
-        android:layout_height="150dp"
+        android:layout_height="140dp"
         android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
-            app:cardCornerRadius="5dp"
-            android:layout_margin="3dp"
+            app:cardCornerRadius="10dp"
+            android:layout_margin="4dp"
             android:layout_width="100dp"
             android:layout_height="100dp">
 
@@ -35,29 +33,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@color/colorAccent"
-                    /> <!-- bind model function - BindingUtil __ app:cover="@{album.cover}"-->
-
-
+                    />
             </com.facebook.shimmer.ShimmerFrameLayout>
 
         </androidx.cardview.widget.CardView>
-
-
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <!-- bind model properties - get title -->
             <TextView
                 android:id="@+id/album_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{album.title}"
                 tools:text="Title"
+                android:text="@{album.title}"
                 android:layout_centerInParent="true"
-                android:textSize="18sp"
                 android:textStyle="bold"
+                android:textSize="20sp"
                 android:textColor="#000" />
 
         </RelativeLayout>
