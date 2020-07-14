@@ -11,13 +11,13 @@ interface AlbumAPI {
     suspend fun getAlbums(): Response<AlbumResponseDTO>
 
     companion object {
-        operator fun invoke(): TrackAPI {
+        operator fun invoke(): AlbumAPI {
             return Retrofit.Builder()
                 .baseUrl("http://api.deezer.com/2.0/user/2529/")
                 //.client(createOkHttpClient())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
-                .create(TrackAPI::class.java)
+                .create(AlbumAPI::class.java)
         }
     }
 

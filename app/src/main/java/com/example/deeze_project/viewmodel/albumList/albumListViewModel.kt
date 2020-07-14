@@ -10,7 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
-abstract class albumListViewModel(
+class albumListViewModel(
     private val repository: AlbumRepo
     ) : ViewModel() {
 

@@ -7,7 +7,7 @@ import com.example.deeze_project.data.dto.mapper.AlbumsResponseMapper
 
 // Le design pattern Repository fait le lien entre le viewModel et les sources de données (model, dto)
 // la source de donnée ici est l'API avec Retrofit
-abstract class AlbumRepo (
+class AlbumRepo (
     private val api: AlbumAPI
 ) : ListenerAPIRequest() {
 
