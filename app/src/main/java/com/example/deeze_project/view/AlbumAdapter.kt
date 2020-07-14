@@ -7,7 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.deeze_project.R
 import com.example.deeze_project.data.model.Album
-import com.example.deeze_project.databinding.AlbumItemRecyclerBinding
+import com.example.deeze_project.databinding.ItemRecyclerAlbumBinding
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
@@ -43,7 +43,7 @@ class AlbumAdapter (
     override fun getItemCount() = albums.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : AlbumViewHolder {
-        val viewBinding = DataBindingUtil.inflate<AlbumItemRecyclerBinding>(
+        val viewBinding = DataBindingUtil.inflate<ItemRecyclerAlbumBinding>(
             LayoutInflater.from(parent.context),
             R.layout.item_recycler_album,
             parent,
@@ -68,7 +68,7 @@ class AlbumAdapter (
 
 
     class AlbumViewHolder(
-        val albumBinding: AlbumItemRecyclerBinding
+        val albumBinding: ItemRecyclerAlbumBinding
     ) : RecyclerView.ViewHolder(albumBinding.root) {
     }
     
