@@ -4,8 +4,7 @@ import android.media.MediaPlayer
 
 object MusicPlayer : playerAdapter {
 
-    lateinit var player: MediaPlayer().
-
+    lateinit var player: MediaPlayer
 
     override fun loadTrack(url: String) {
         TODO("Not yet implemented")
