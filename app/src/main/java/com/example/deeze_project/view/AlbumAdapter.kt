@@ -45,7 +45,7 @@ class AlbumAdapter (
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : AlbumViewHolder {
         val viewBinding = DataBindingUtil.inflate<AlbumItemRecyclerBinding>(
             LayoutInflater.from(parent.context),
-            R.layout.album_item_recycler,
+            R.layout.item_recycler_album,
             parent,
             false
         )
