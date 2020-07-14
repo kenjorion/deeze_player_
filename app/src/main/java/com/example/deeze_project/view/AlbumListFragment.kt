@@ -21,7 +21,6 @@ import kotlinx.android.synthetic.main.album_list_fragment.*
 
 class AlbumListFragment : Fragment(), ClickListener {
     private lateinit var viewModel: albumListViewModel
-    private var listenerNavigation: ((Album) -> Unit)? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,7 +35,6 @@ class AlbumListFragment : Fragment(), ClickListener {
         val api = AlbumAPI()
         val repository = AlbumRepo(api)
         val viewModel by lazy { ViewModelProvider(this).get(albumListViewModel(repository)::class.java) }
-        listenerNavigation = this::navigateToAlbumDetail
 
         // Recupère les albums (api request)
         viewModel.getAlbums()
@@ -57,13 +55,6 @@ class AlbumListFragment : Fragment(), ClickListener {
 
     override fun <Album> onItemClick(view: View, data: Album) {
         //Toast.makeText(requireContext(), "Album: " + album.title, Toast.LENGTH_SHORT).show()
-        listenerNavigation?.invoke(data as com.example.deeze_project.data.model.Album)
+        view.let { this.findNavController().navigate(R.id.albumDetailFragment) }
     }
-
-    // Navigation to AlbumDetailFragment with album id in param
-    private fun navigateToAlbumDetail(fragmentId: Int) {
-        fragmentId =
-        this.findNavController().navigate(fragmentId);
-    }
-
 }
