@@ -17,7 +17,7 @@ class AlbumAdapter (
     private val listener: ClickListener
     ) : RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder>() {
 
-    fun loadImage(imageView: ImageView, url: String, shimmer: ShimmerFrameLayout) {
+    private fun loadImage(imageView: ImageView, url: String, shimmer: ShimmerFrameLayout) {
         shimmer.startShimmerAnimation()
         Picasso.get()
             .load(url)
@@ -25,7 +25,7 @@ class AlbumAdapter (
             .centerInside()
             .noFade()
             .placeholder(R.color.grey)
-            .error(R.drawable.ic_launcher_background)  //TODO: changer image error
+            .error(R.drawable.ic_launcher_foreground)
             .into(imageView, object : Callback {
                 override fun onSuccess() {
                     // animation fade-in
@@ -57,9 +57,9 @@ class AlbumAdapter (
             albumBinding.album = albums[position]
 
             loadImage(
-                albumBinding.albumCover, //recupere view (albumCover = id dans XML)
+                albumBinding.albumCover,
                 albumBinding.album!!.cover,
-                albumBinding.parentShimmerLayout // recupere view (parentShimmerLayout = id dans XML)
+                albumBinding.parentShimmerLayout
             )
             albumBinding.root.setOnClickListener {
                 listener.onItemClick(albumBinding.root, albums[position])

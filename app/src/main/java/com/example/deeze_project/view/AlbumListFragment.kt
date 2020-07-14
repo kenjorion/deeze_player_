@@ -9,7 +9,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.deeze_project.R
 import com.example.deeze_project.data.api.AlbumAPI
 import com.example.deeze_project.data.repo.AlbumRepo
