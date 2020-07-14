@@ -4,36 +4,51 @@ import android.media.MediaPlayer
 
 object MusicPlayer : playerAdapter {
 
-    lateinit var player: MediaPlayer().
+    private lateinit var player: MediaPlayer
+    private lateinit var currentState: PlayerState
+    val currentPosition get() = player.currentPosition
 
 
     override fun loadTrack(url: String) {
-        TODO("Not yet implemented")
+        player.reset()
+        player.setDataSource(url)
+        player.prepareAsync()
     }
 
     override fun release() {
-        TODO("Not yet implemented")
+        player.reset()
+        currentState = PlayerState.RESET
     }
 
     override fun isPlaying(): Boolean {
-        TODO("Not yet implemented")
+        return player.isPlaying
     }
 
     override fun play() {
-        TODO("Not yet implemented")
+        if(!player.isPlaying) {
+            player.start()
+            currentState = PlayerState.PLAYING
+            //Synchro player position
+        }
     }
 
     override fun reset() {
-        TODO("Not yet implemented")
+        player.reset()
+        currentState = PlayerState.RESET
     }
 
     override fun pause() {
-        TODO("Not yet implemented")
+        if (player.isPlaying) {
+            player.pause()
+            currentState = PlayerState.PAUSED
+            //synchro player position
+        }
     }
 
     override fun seekTo(position: Int) {
-        TODO("Not yet implemented")
+        player.seekTo(position)
     }
+
 
 
 }
