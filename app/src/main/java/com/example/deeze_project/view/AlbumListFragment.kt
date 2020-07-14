@@ -33,15 +33,10 @@ class AlbumListFragment : Fragment(), ClickListener {
         val repository = AlbumRepo(api)
         val viewModel by lazy { ViewModelProvider(this).get(albumListViewModel(repository)::class.java) }
 
-        // Recupère les albums (api request)
         viewModel.getAlbums()
 
-        // liveData observable => gere le cycle de vie et protege les données
-        // ex: rotation de l'ecran, recevoir un appel, perte de batterie, les données sont pas perdus et recréer grace a LiveData
         viewModel.albums.observe(viewLifecycleOwner, Observer { albums ->
-            // album_rcv = id recyclerview dans XML <=> comme findviewbyid
             album_rc.also {
-                // init recyclerview
                 it.layoutManager = GridLayoutManager(requireContext(), 3)
                 it.setHasFixedSize(true)
                 it.adapter = AlbumAdapter(albums, this)
@@ -51,7 +46,6 @@ class AlbumListFragment : Fragment(), ClickListener {
     }
 
     override fun <Album> onItemClick(view: View, data: Album) {
-        //Toast.makeText(requireContext(), "Album: " + album.title, Toast.LENGTH_SHORT).show()
         view.let { this.findNavController().navigate(R.id.albumDetailFragment) }
     }
 }
