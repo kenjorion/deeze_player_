@@ -9,5 +9,7 @@ data class Track(
     val link: String,
     val rank: Int,
     val title: String,
-    val type: String
+    val type: String,
+    val song: String
+
 )
