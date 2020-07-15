@@ -27,7 +27,19 @@ object MusicPlayer : playerAdapter {
     }
 
     override fun pause() {
+<<<<<<< Updated upstream
         TODO("Not yet implemented")
+=======
+        if (player.isPlaying) {
+            player.pause()
+            currentState = PlayerState.PAUSED
+            //synchro player position
+        }
+    }
+
+    fun seekTo(position: Int) {
+        player.seekTo(position)
+>>>>>>> Stashed changes
     }
 
 

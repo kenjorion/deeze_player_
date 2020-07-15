@@ -30,7 +30,6 @@ class AlbumDetailFragment : Fragment(), ClickListener, SlidingUpPanelLayout.Pane
 
     private val args by navArgs<AlbumDetailFragmentArgs>()
 
-
     val api = TrackAPI()
     val repository = TrackRepo(api)
     private val viewModel by lazy { ViewModelProvider(this).get(albumDetailViewModel(repository)::class.java) }
@@ -52,6 +51,10 @@ class AlbumDetailFragment : Fragment(), ClickListener, SlidingUpPanelLayout.Pane
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        arguments?.let {
+            val arg = AlbumDetailFragmentArgs.fromBundle(it)
+            arg.trackItem.id
+        }
         val viewBinding = DataBindingUtil.inflate<AlbumDetailFragmentBinding>(
             inflater,
             R.layout.album_detail_fragment,
