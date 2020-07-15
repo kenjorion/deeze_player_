@@ -17,7 +17,9 @@ data class TracksDTO(
     @SerializedName("title")
     val title: String,
     @SerializedName("type")
-    val type: String
+    val type: String,
+    @SerializedName("song")
+    val song: String
 )
 
 data class TrackResponseDTO(@SerializedName("data") val trackList: List<TracksDTO>)

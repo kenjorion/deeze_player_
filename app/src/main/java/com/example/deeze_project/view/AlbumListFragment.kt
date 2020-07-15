@@ -16,7 +16,6 @@ import com.example.deeze_project.viewmodel.albumList.albumListViewModel
 import kotlinx.android.synthetic.main.album_list_fragment.*
 
 class AlbumListFragment : Fragment(), ClickListener {
-    private lateinit var viewModel: albumListViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,

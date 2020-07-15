@@ -30,9 +30,5 @@ object MusicPlayer : playerAdapter {
         TODO("Not yet implemented")
     }
 
-    override fun seekTo(position: Int) {
-        TODO("Not yet implemented")
-    }
-
 
 }

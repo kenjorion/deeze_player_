@@ -28,7 +28,6 @@ class AlbumAdapter (
             .error(R.drawable.ic_launcher_foreground)
             .into(imageView, object : Callback {
                 override fun onSuccess() {
-                    // animation fade-in
                     imageView.alpha = 0f
                     shimmer.stopShimmerAnimation()
                     imageView.animate().setDuration(1000).alpha(1f).start()

@@ -14,9 +14,6 @@ interface playerAdapter {
 
     fun pause()
 
-    // fun initializeProgressCallback()
-
-    fun seekTo(position: Int)
 }
 
 enum class PlayerState {

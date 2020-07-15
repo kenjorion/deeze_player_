@@ -36,7 +36,7 @@ class AlbumsResponseMapper {
 class TrackResponseMapper {
 
     fun map(tracksResponse: TrackResponseDTO): List<Track> {
-        val trackListDTO = tracksResponse.trackList // = "data" du JSON
+        val trackListDTO = tracksResponse.trackList
 
         return trackListDTO.map { trackDto ->
             Track(
@@ -50,7 +50,8 @@ class TrackResponseMapper {
                 trackDto.link,
                 trackDto.rank,
                 trackDto.title,
-                trackDto.type
+                trackDto.type,
+                trackDto.song
             )
         }
     }
