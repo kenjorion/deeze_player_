@@ -17,6 +17,10 @@ import kotlinx.android.synthetic.main.album_list_fragment.*
 
 class AlbumListFragment : Fragment(), ClickListener {
 
+    val api = AlbumAPI()
+    val repository = AlbumRepo(api)
+    val viewModel by lazy { ViewModelProvider(this).get(albumListViewModel(repository)::class.java) }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -27,9 +31,9 @@ class AlbumListFragment : Fragment(), ClickListener {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val api = AlbumAPI()
-        val repository = AlbumRepo(api)
-        val viewModel by lazy { ViewModelProvider(this).get(albumListViewModel(repository)::class.java) }
+        //val api = AlbumAPI()
+        //val repository = AlbumRepo(api)
+        //val viewModel by lazy { ViewModelProvider(this).get(albumListViewModel(repository)::class.java) }
 
         viewModel.getAlbums()
 

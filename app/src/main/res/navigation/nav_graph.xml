@@ -20,8 +20,11 @@
         android:label="album_detail_fragment"
         tools:layout="@layout/album_detail_fragment" >
         <argument
+            android:name="trackItem"
+            app:argType="com.example.deeze_project.data.model.Track" />
+        <argument
             android:name="albumItem"
-            app:argType="fr.esgi.deezerplayer.data.model.Album" />
+            app:argType="com.example.deeze_project.data.model.Album" />
     </fragment>
 
 </navigation>
