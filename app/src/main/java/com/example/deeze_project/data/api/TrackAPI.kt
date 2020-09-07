@@ -9,7 +9,7 @@ import retrofit2.http.Path
 
 interface TrackAPI {
     @GET("{album_id}/tracks")
-    suspend fun getTracks(@Path("album_id") albumId: Int): Response<TrackResponseDTO>
+    fun getTracks(@Path("album_id") albumId: Int): Response<TrackResponseDTO>
 
     companion object {
         operator fun invoke(): TrackAPI {

@@ -45,7 +45,7 @@ object MusicPlayer : playerAdapter {
         }
     }
 
-    override fun seekTo(position: Int) {
+    fun seekTo(position: Int) {
         player.seekTo(position)
     }
 

@@ -8,7 +8,7 @@ import retrofit2.http.GET
 
 interface AlbumAPI {
     @GET("album")
-    suspend fun getAlbums(): Response<AlbumResponseDTO>
+    fun getAlbums(): Response<AlbumResponseDTO>
 
     companion object {
         operator fun invoke(): AlbumAPI {

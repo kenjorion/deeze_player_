@@ -17,12 +17,13 @@ class albumListViewModel(
     private val albumsMutable = MutableLiveData<List<Album>>()
     val albums: LiveData<List<Album>> = albumsMutable
 
-    fun getAlbums() {
+    suspend fun getAlbums() {
         var job = CoroutineScope(Dispatchers.Main).launch {
             val data = async {
                 return@async repository.getAlbums()
             }.await()
             albumsMutable.value
         }
+        repository.getAlbums()
     }
 }

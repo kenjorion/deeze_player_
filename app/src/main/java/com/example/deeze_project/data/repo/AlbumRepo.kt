@@ -10,7 +10,7 @@ class AlbumRepo (
 ) : ListenerAPIRequest() {
 
     suspend fun getAlbums(): List<Album> {
-        val albumsResponseDTO = apiRequest { api.getAlbums() } // { ... } func call
+        val albumsResponseDTO = apiRequest { api.getAlbums() }
         return AlbumsResponseMapper().map(albumsResponseDTO)
     }
 }
